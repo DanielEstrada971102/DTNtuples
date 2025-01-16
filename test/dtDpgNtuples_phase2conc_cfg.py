@@ -73,6 +73,12 @@ options.register('ntupleName',
                  VarParsing.VarParsing.varType.string,
                  "Folder and name ame for output ntuple")
 
+options.register('showThreshold',
+                 12, 
+                 VarParsing.VarParsing.multiplicity.singleton,
+                 VarParsing.VarParsing.varType.int,
+                 "Threshold for shower emulator")
+
 options.parseArguments()
 
 process = cms.Process("DTNTUPLES",eras.Phase2C9)
@@ -97,7 +103,7 @@ process.source = cms.Source("PoolSource",
 
 #files = subprocess.check_output(["ls", options.inputFolder])
 process.source.fileNames = [
-
+    # '/store/mc/Phase2Spring24DIGIRECOMiniAOD/MinBias_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW-MINIAOD/PU200ALCA_140X_mcRun4_realistic_v4-v2/120000/004dd3c5-29c9-4283-95f3-baf57220dce2.root'
     'root://xrootd-cms.infn.it//store/mc/Phase2HLTTDRWinter20DIGI/ZprimeToMuMu_M-6000_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/PU200_110X_mcRun4_realistic_v3-v2/40000/00E449AC-F2F5-BD49-9230-DF997178F38F.root',                            
 
 #     'root://xrootd-cms.infn.it//store/mc/Phase2Fall22DRMiniAOD/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW-MINIAOD/PU200_PUTP_125X_mcRun4_realistic_v2-v1/2550000/21741e26-a5ed-4232-917a-6a1b571e2474.root',
@@ -134,6 +140,7 @@ process.dtTriggerPhase2AmPrimitiveDigis = process.dtTriggerPhase2PrimitiveDigis.
 process.dtTriggerPhase2AmPrimitiveDigis.useRPC = True
 
 process.dtTriggerPhase2ShowerV1 = process.dtTriggerPhase2Shower.clone()
+process.dtTriggerPhase2ShowerV1.threshold_for_shower = options.showThreshold
 process.dtTriggerPhase2ShowerV1.debug = False # Turn off debug mode 
 
 process.load('RecoLocalMuon.Configuration.RecoLocalMuon_cff')
