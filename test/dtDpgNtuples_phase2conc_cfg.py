@@ -74,10 +74,15 @@ options.register('ntupleName',
                  "Folder and name ame for output ntuple")
 
 options.register('showThreshold',
-                 12, 
+                 6, 
                  VarParsing.VarParsing.multiplicity.singleton,
                  VarParsing.VarParsing.varType.int,
                  "Threshold for shower emulator")
+options.register('showAlgorythm',
+                 0, 
+                 VarParsing.VarParsing.multiplicity.singleton,
+                 VarParsing.VarParsing.varType.int,
+                 "Algorithm to use for shower emulator")
 
 options.parseArguments()
 
@@ -140,8 +145,9 @@ process.dtTriggerPhase2AmPrimitiveDigis = process.dtTriggerPhase2PrimitiveDigis.
 process.dtTriggerPhase2AmPrimitiveDigis.useRPC = True
 
 process.dtTriggerPhase2ShowerV1 = process.dtTriggerPhase2Shower.clone()
+process.dtTriggerPhase2ShowerV1.showerTaggingAlgo = options.showAlgorythm
 process.dtTriggerPhase2ShowerV1.threshold_for_shower = options.showThreshold
-process.dtTriggerPhase2ShowerV1.debug = False # Turn off debug mode 
+process.dtTriggerPhase2ShowerV1.debug = True # Turn off debug mode 
 
 process.load('RecoLocalMuon.Configuration.RecoLocalMuon_cff')
 process.dt1DRecHits.dtDigiLabel = "simMuonDTDigis"

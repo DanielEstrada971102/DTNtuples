@@ -53,8 +53,10 @@ class DTNtuplePh2ShowerFiller : public DTNtupleBaseFiller
   std::vector<short> m_wheel;   // wheel (short in [-2:2] range)
   std::vector<short> m_sector;  // sector (short in [1:12] range)
   std::vector<short> m_station; // station (short in [1:4] range)
-  std::vector<int> m_bx;        // BX : (short with a given range)
   std::vector<int> m_ndigis;    // BX : (short with a given range)
+  std::vector<int> m_bx;        // BX : (short with a given range)
+  std::vector<int> m_min_wire;  // Min wire
+  std::vector<int> m_max_wire;  // Max wire
   std::vector<float> m_avg_pos;
   std::vector<float> m_avg_time;
 
