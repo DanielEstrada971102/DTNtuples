@@ -41,3 +41,15 @@ __init__.py
 
 # Intermediate files
 *~
+
+#log files
+*.log
+
+# results
+*.txt
+*.csv
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.svg

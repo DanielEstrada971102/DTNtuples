@@ -7,20 +7,23 @@ Three basic scripts to produce ntuples are provided:
 1. `dtDpgNtuples_collision_cfg.py` : suitable for running on "present run" (e.g. Run 2) samples;
 2. `dtDpgNtuples_slicetest_cfg.py` : aimed at processing DT slice test data;
 3. `dtDpgNtuples_phase2_cfg.py` : designed for processing phase-2 samples (e.g. the ones for L1T TDR).
+4. `dtDpgNtuples_phase2_wshowers_cfg.py` : designed for processing phase-2 samples with showers.
 
 Each of them can be configured by means of command-line arguments that can be listed by issuing:
 
 ```bash
-python dtDpgNtuples_[collision,slicetest,phase2]_cfg.py --help
+python dtDpgNtuples_[collision,slicetest,phase2...]_cfg.py --help
 ```
 
 To run a given script is enough to issue:
 ```bash
-cmsRun dtDpgNtuples_[collision,slicetest,phase2]_cfg.py [command line parameters]
+cmsRun dtDpgNtuples_[collision,slicetest,phase2...]_cfg.py [command line parameters]
 
 # E.g.
 cmsRun dtDpgNtuples_slicetest_cfg.py runNumber=333510
 ```
+
+There is also a script to submit `dtDpgNtuples_phase2_wshowers_cfg.py` to CRAB. Just see and modify as needed `test/multicrap_concentrator.py`.
 
 ## Scripts working on ntuples
 
