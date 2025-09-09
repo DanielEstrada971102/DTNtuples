@@ -9,9 +9,10 @@ name = 'TEST'
 threshold_scan = False
 threshold_values = [6, 8, 10, 12, 14, 16, 20, 24]
 shower_algorithm = 1  # 0=standalone, 1=firmware like
+use_rpc = True
+use_ext_df = 0  # 0 no, 1 yes, 2 both
 running_options = []
 runATCAF = False
-
 
 # Dictionary to store metadata
 dataset = {
@@ -72,7 +73,9 @@ if __name__ == '__main__':
          config.JobType.pyCfgParams = [
             f'ntupleName=./DTDPGNtuple_15_1_0_pre2_Phase2_WShower_ShowAlgo{shower_algorithm}_Thr{threshold}_Simulation.root',
             f'showThreshold={threshold}',
-            f'showerAlgorithm={shower_algorithm}'
+            f'showerAlgorithm={shower_algorithm}',
+            f'useRPC={use_rpc}',
+            f'useExtDF={use_ext_df}'
          ]
          config.General.requestName = sample
          config.Data.inputDataset = dataset[sample]

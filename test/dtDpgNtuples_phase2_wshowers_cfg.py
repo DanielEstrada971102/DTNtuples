@@ -96,6 +96,18 @@ options.register('debug',
                  VarParsing.VarParsing.varType.bool,
                  "If True runs in debug mode")
 
+options.register('useRPC',
+                True, 
+                VarParsing.VarParsing.multiplicity.singleton,
+                VarParsing.VarParsing.varType.bool,
+                "If True uses RPC in the Phase-2 DT trigger emulator")
+options.register('useExtDF',
+                0, # 0 no, 1 yes, 2 both data formats are saved 
+                VarParsing.VarParsing.multiplicity.singleton,
+                VarParsing.VarParsing.varType.int,
+                "If 0 no, 1 yes, 2 both data formats are saved ")
+options
+
 options.parseArguments()
 
 process = cms.Process("DTNTUPLES",eras.Phase2C9)
@@ -208,11 +220,11 @@ process.dtTriggerPhase2ShowerV1.threshold_for_shower = options.showThreshold
 process.dtTriggerPhase2ShowerV1.debug = options.debug # Turn off debug mode
 
 process.dtTriggerPhase2AmPrimitiveDigis = process.dtTriggerPhase2PrimitiveDigis.clone()
-process.dtTriggerPhase2AmPrimitiveDigis.useRPC = True
+process.dtTriggerPhase2AmPrimitiveDigis.useRPC = options.useRPC
 process.dtTriggerPhase2AmPrimitiveDigis.debug = options.debug # Turn off debug mode
-process.dtTriggerPhase2AmPrimitiveDigis.df_extended = 1 # Use extended data format
-# process.dtTriggerPhase2AmPrimitiveDigis.showersTag = "dtTriggerPhase2ShowerV1"
-# process.dtTriggerPhase2AmPrimitiveDigis.useShowers = False
+process.dtTriggerPhase2AmPrimitiveDigis.df_extended = options.useExtDF # Use extended data format
+#process.dtTriggerPhase2AmPrimitiveDigis.showersTag = "dtTriggerPhase2ShowerV1"
+#process.dtTriggerPhase2AmPrimitiveDigis.useShowers = False
 
 process.load('RecoLocalMuon.Configuration.RecoLocalMuon_cff')
 process.dt1DRecHits.dtDigiLabel = "simMuonDTDigis"
@@ -224,6 +236,7 @@ process.simBmtfDigis.DTDigi_Source = "simDtTriggerPrimitiveDigis"
 process.simBmtfDigis.DTDigi_Theta_Source = "simDtTriggerPrimitiveDigis"
 
 process.load('DTDPGAnalysis.DTNtuples.dtNtupleProducer_phase2_cfi')
+process.dtNtupleProducer.ph2TPGUseExtended = options.useExtDF
 
 process.p = cms.Path(process.rpcRecHits
                      + process.dt1DRecHits
