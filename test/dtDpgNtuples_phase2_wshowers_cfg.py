@@ -106,7 +106,11 @@ options.register('useExtDF',
                 VarParsing.VarParsing.multiplicity.singleton,
                 VarParsing.VarParsing.varType.int,
                 "If 0 no, 1 yes, 2 both data formats are saved ")
-options
+options.register('unhardcodeAMSector',
+                True, 
+                VarParsing.VarParsing.multiplicity.singleton,
+                VarParsing.VarParsing.varType.bool,
+                "If True the AM TP sector is not hardcoded from 13-14 to 4-10")
 
 options.parseArguments()
 
@@ -223,6 +227,7 @@ process.dtTriggerPhase2AmPrimitiveDigis = process.dtTriggerPhase2PrimitiveDigis.
 process.dtTriggerPhase2AmPrimitiveDigis.useRPC = options.useRPC
 process.dtTriggerPhase2AmPrimitiveDigis.debug = options.debug # Turn off debug mode
 process.dtTriggerPhase2AmPrimitiveDigis.df_extended = options.useExtDF # Use extended data format
+process.dtTriggerPhase2AmPrimitiveDigis.unhardcoded_sectorgt12 = options.unhardcodeAMSector # Do not hardcode AM sector to 4-10
 #process.dtTriggerPhase2AmPrimitiveDigis.showersTag = "dtTriggerPhase2ShowerV1"
 #process.dtTriggerPhase2AmPrimitiveDigis.useShowers = False
 
