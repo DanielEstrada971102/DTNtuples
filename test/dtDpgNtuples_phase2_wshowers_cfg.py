@@ -120,19 +120,19 @@ process.load('Configuration.StandardSequences.Services_cff')
 
 if options.debug:
     process.load('FWCore.MessageService.MessageLogger_cfi')
-    process.MessageLogger.cerr.FwkReport.reportEvery = 100
+    # process.MessageLogger.cerr.FwkReport.reportEvery = 100
 
     process.MessageLogger = cms.Service(
         "MessageLogger",
         destinations = cms.untracked.vstring(
             'detailedInfo',
-            'critical'
         ),
         detailedInfo = cms.untracked.PSet(
             threshold = cms.untracked.string('DEBUG')
         ),
         debugModules = cms.untracked.vstring(
-            'dtTriggerPhase2AmPrimitiveDigis',
+            'dtTriggerPhase2ShowerV1',
+            # 'dtTriggerPhase2AmPrimitiveDigis',
         )
     )
 
@@ -162,6 +162,7 @@ testing_input_files = {
     # NOT AVAILABLE NOW : INVALID ?
     # 'root://xrootd-cms.infn.it//store/mc/Phase2HLTTDRWinter20DIGI/ZprimeToMuMu_M-6000_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW/PU200_110X_mcRun4_realistic_v3-v2/40000/00E449AC-F2F5-BD49-9230-DF997178F38F.root',
     'ZprimeToMuMu_M-6000_PU200': [ # ~ 4000 events
+        'root://xrootd-cms.infn.it//store/mc/Phase2Spring24DIGIRECOMiniAOD/ZprimeToMuMu_M-6000_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW-MINIAOD/PU200_Trk1GeV_140X_mcRun4_realistic_v4-v1/120000/119a30c4-1ca8-465d-840d-a64cb62f9868.root', #--> aparentemente esta mal este archivo
         'root://xrootd-cms.infn.it//store/mc/Phase2Spring24DIGIRECOMiniAOD/ZprimeToMuMu_M-6000_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW-MINIAOD/PU200_Trk1GeV_140X_mcRun4_realistic_v4-v1/120000/05c718cf-1618-4f60-8b6b-d49a0da7df1f.root',
         'root://xrootd-cms.infn.it//store/mc/Phase2Spring24DIGIRECOMiniAOD/ZprimeToMuMu_M-6000_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW-MINIAOD/PU200_Trk1GeV_140X_mcRun4_realistic_v4-v1/120000/06a231d0-f02c-489b-bb97-0ce8b5469848.root',
         'root://xrootd-cms.infn.it//store/mc/Phase2Spring24DIGIRECOMiniAOD/ZprimeToMuMu_M-6000_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW-MINIAOD/PU200_Trk1GeV_140X_mcRun4_realistic_v4-v1/120000/09452338-f2ba-4a86-a65a-da4179251cae.root',
@@ -178,7 +179,7 @@ testing_input_files = {
 def set_test_files():
     if options.testDataset not in testing_input_files :
         raise ValueError(f"Test dataset {options.testDataset} not recognized. Available test datasets: {list(testing_input_files.keys())}")
-    process.source.fileNames = testing_input_files[options.testDataset]
+    process.source.fileNames = testing_input_files[options.testDataset]#["file:/eos/user/d/destrada/ZprimeToMuMu_M-6000_TuneCP5_14TeV-pythia8/ntuple_test_j10.root"]
 
 if options.debug:
     set_test_files()

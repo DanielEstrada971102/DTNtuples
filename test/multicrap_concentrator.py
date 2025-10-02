@@ -5,12 +5,12 @@
 # python3 multicrab.py
 
 #Part of the name of your output directory, adapt as needed.  
-name = 'TEST'
+name = 'ZprimeToMuMu_M-6000_PU200'
 threshold_scan = False
 threshold_values = [6, 8, 10, 12, 14, 16, 20, 24]
 shower_algorithm = 1  # 0=standalone, 1=firmware like
 use_rpc = True
-use_ext_df = 0  # 0 no, 1 yes, 2 both
+use_ext_df = 1  # 0 no, 1 yes, 2 both
 running_options = []
 runATCAF = False
 
@@ -18,7 +18,7 @@ runATCAF = False
 dataset = {
    # Zprime -> mumu prompt muons
    # INVALID: "ZprimeToMuMu_M-6000_PU200" : "/ZprimeToMuMu_M-6000_TuneCP5_14TeV-pythia8/Phase2HLTTDRWinter20DIGI-PU200_110X_mcRun4_realistic_v3-v2/GEN-SIM-DIGI-RAW",
-   "ZprimeToMuMu_M-6000_PU200" : "/ZprimeToMuMu_M-6000_TuneCP5_14TeV-pythia8/Phase2Spring24DIGIRECOMiniAOD-PU200_Trk1GeV_140X_mcRun4_realistic_v4-v1/GEN-SIM-DIGI-RAW-MINIAOD", 
+   "ZprimeToMuMu_M-6000_PU200" : "/ZprimeToMuMu_M-6000_TuneCP5_14TeV-pythia8/Phase2Spring24DIGIRECOMiniAOD-PU200_Trk1GeV_140X_mcRun4_realistic_v4-v1/GEN-SIM-DIGI-RAW-MINIAOD",
    # Drell yan
    "DYToLL_M50_PU200" : "/DYToLL_M-50_TuneCP5_14TeV-pythia8/Phase2Fall22DRMiniAOD-PU200_125X_mcRun4_realistic_v2-v1/GEN-SIM-DIGI-RAW-MINIAOD",
    # MinBias
