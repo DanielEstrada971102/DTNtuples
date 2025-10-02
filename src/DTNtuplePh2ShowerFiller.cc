@@ -44,7 +44,9 @@ void DTNtuplePh2ShowerFiller::initialize()
   m_tree->Branch((m_label + "_avg_pos").c_str(),    &m_avg_pos);
   m_tree->Branch((m_label + "_avg_time").c_str(),    &m_avg_time);
   m_tree->Branch((m_label + "_wires_profile").c_str(),    &m_wires_profile);
-  
+  m_tree->Branch((m_label + "_wires_constituents").c_str(),    &m_wires_constituents);
+  m_tree->Branch((m_label + "_wires_layer_constituents").c_str(),    &m_wires_layer_constituents);
+  m_tree->Branch((m_label + "_wires_tdc_constituents").c_str(),    &m_wires_tdc_constituents);
 }
 
 void DTNtuplePh2ShowerFiller::clear()
@@ -61,6 +63,9 @@ void DTNtuplePh2ShowerFiller::clear()
   m_avg_pos.clear();
   m_avg_time.clear();
   m_wires_profile.clear();
+  m_wires_constituents.clear();
+  m_wires_layer_constituents.clear();
+  m_wires_tdc_constituents.clear();
 }
 
 void DTNtuplePh2ShowerFiller::fill(const edm::Event & ev)
@@ -87,7 +92,10 @@ void DTNtuplePh2ShowerFiller::fill(const edm::Event & ev)
 	  m_avg_time.push_back(shower.avg_time());
 	  m_avg_pos.push_back(shower.avg_pos());
     m_wires_profile.push_back(shower.wiresProfile());
-	
+    m_wires_constituents.push_back(shower.wiresConstituents());
+    m_wires_layer_constituents.push_back(shower.wiresLayerConstituents());
+    m_wires_tdc_constituents.push_back(shower.wiresTdcConstituents());
+
 	}
     }
   

@@ -61,6 +61,9 @@ class DTNtuplePh2ShowerFiller : public DTNtupleBaseFiller
   std::vector<float> m_avg_pos; // Average position
   std::vector<float> m_avg_time; // Average time
   std::vector<std::vector<int>> m_wires_profile; // Wires profile
+  std::vector<std::vector<int>> m_wires_constituents; // Wires constituents
+  std::vector<std::vector<int>> m_wires_layer_constituents; // Wires layer constituents
+  std::vector<std::vector<int>> m_wires_tdc_constituents; // Wires tdc constituents
 
 };
   
