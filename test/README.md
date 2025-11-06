@@ -7,7 +7,7 @@ Three basic scripts to produce ntuples are provided:
 1. `dtDpgNtuples_collision_cfg.py` : suitable for running on "present run" (e.g. Run 2) samples;
 2. `dtDpgNtuples_slicetest_cfg.py` : aimed at processing DT slice test data;
 3. `dtDpgNtuples_phase2_cfg.py` : designed for processing phase-2 samples (e.g. the ones for L1T TDR).
-4. `dtDpgNtuples_phase2_wshowers_cfg.py` : designed for processing phase-2 samples with showers.
+4. `dtDpgNtuples_phase2_wshowers_cfg.py` : designed for processing phase-2 samples with DT showers.
 
 Each of them can be configured by means of command-line arguments that can be listed by issuing:
 

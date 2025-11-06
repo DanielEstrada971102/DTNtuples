@@ -53,3 +53,5 @@ __init__.py
 *.jpg
 *.jpeg
 *.svg
+
+*.__*
