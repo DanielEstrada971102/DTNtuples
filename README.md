@@ -28,18 +28,18 @@ cmsRun dtDpgNtuples_phase2_cfg.py nEvents=10000
 ```
 
 > [!NOTE]
-> *Update to Ntuples with shower algorithm emulation: 07/09/25*
+> *Update to Ntuples with shower algorithm emulation: 06/11/25*
 > ### Installation:
 > ```bash
-> cmsrel CMSSW_15_1_0_pre2
-> cd CMSSW_15_1_0_pre2/src
+> cmsrel CMSSW_16_0_0_pre2
+> cd CMSSW_16_0_0_pre2/src
 > cmsenv
 > git cms-init
 > # To be updated with the showers producer
 > git cms-addpkg L1Trigger/DTTriggerPhase2
 > git clone git@github.com:dtp2-tpg-am/L1Trigger-DTTriggerPhase2.git L1Trigger/DTTriggerPhase2/data -b newluts
 > git remote add destrada git@github.com:DanielEstrada971102/cmssw.git
-> git checkout destrada/showers_cmssw_15x
+> git checkout destrada/showers_cmssw_16X
 > # Now install the code to produce ntuples
 > git clone git@github.com:DanielEstrada971102/DTNtuples.git DTDPGAnalysis/DTNtuples -b shower_ntuples
 > 

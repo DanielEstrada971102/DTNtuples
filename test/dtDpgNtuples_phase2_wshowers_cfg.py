@@ -2,9 +2,6 @@ import FWCore.ParameterSet.Config as cms
 import FWCore.ParameterSet.VarParsing as VarParsing
 from Configuration.StandardSequences.Eras import eras
 
-import subprocess
-import sys
-
 options = VarParsing.VarParsing()
 
 options.register('globalTag',
@@ -96,6 +93,12 @@ options.register('debug',
                  VarParsing.VarParsing.varType.bool,
                  "If True runs in debug mode")
 
+options.register('dumpDigis', # this option should be used only when run in local.
+                 False, 
+                 VarParsing.VarParsing.multiplicity.singleton,
+                 VarParsing.VarParsing.varType.bool,
+                 "If True dumps the digis used in the shower algorithm to a root file")
+
 options.register('useRPC',
                 True, 
                 VarParsing.VarParsing.multiplicity.singleton,
@@ -168,11 +171,11 @@ testing_input_files = {
         'root://xrootd-cms.infn.it//store/mc/Phase2Spring24DIGIRECOMiniAOD/ZprimeToMuMu_M-6000_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW-MINIAOD/PU200_Trk1GeV_140X_mcRun4_realistic_v4-v1/120000/09452338-f2ba-4a86-a65a-da4179251cae.root',
         'root://xrootd-cms.infn.it//store/mc/Phase2Spring24DIGIRECOMiniAOD/ZprimeToMuMu_M-6000_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW-MINIAOD/PU200_Trk1GeV_140X_mcRun4_realistic_v4-v1/120000/09cfe03d-e128-4e58-89d4-1fcca2b95ccb.root',
     ],
-    'DYToLL_M50_PU200': [ # ~640 events
-        'root://xrootd-cms.infn.it//store/mc/Phase2Fall22DRMiniAOD/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW-MINIAOD/PU200_125X_mcRun4_realistic_v2-v1/30000/006da94b-e04a-4285-b355-061d34f1fd6a.root',
-        'root://xrootd-cms.infn.it//store/mc/Phase2Fall22DRMiniAOD/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW-MINIAOD/PU200_125X_mcRun4_realistic_v2-v1/30000/0092f84d-f3df-4d96-b234-a250b77005f4.root',
-        'root://xrootd-cms.infn.it//store/mc/Phase2Fall22DRMiniAOD/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW-MINIAOD/PU200_125X_mcRun4_realistic_v2-v1/30000/00e3a777-4dfe-4e0a-a61e-3c29c82a3511.root',
-        'root://xrootd-cms.infn.it//store/mc/Phase2Fall22DRMiniAOD/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW-MINIAOD/PU200_125X_mcRun4_realistic_v2-v1/30000/0144e495-b696-43ce-8738-a02c837f1885.root',
+    'DYToLL_M50_PU200': [ # ~4000 events
+        'root://xrootd-cms.infn.it//store/mc/Phase2Spring24DIGIRECOMiniAOD/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW-MINIAOD/PU200_Trk1GeV_140X_mcRun4_realistic_v4-v1/2810000/0027a144-58e8-4e80-a3a2-7ea8f5de45dd.root',
+        'root://xrootd-cms.infn.it//store/mc/Phase2Spring24DIGIRECOMiniAOD/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW-MINIAOD/PU200_Trk1GeV_140X_mcRun4_realistic_v4-v1/2810000/007b0840-d3d2-48a0-9729-bf7f41e9f1d1.root',
+        'root://xrootd-cms.infn.it//store/mc/Phase2Spring24DIGIRECOMiniAOD/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW-MINIAOD/PU200_Trk1GeV_140X_mcRun4_realistic_v4-v1/2810000/008935df-4f1e-43bc-a7e4-b0eac669ef26.root',
+        'root://xrootd-cms.infn.it//store/mc/Phase2Spring24DIGIRECOMiniAOD/DYToLL_M-50_TuneCP5_14TeV-pythia8/GEN-SIM-DIGI-RAW-MINIAOD/PU200_Trk1GeV_140X_mcRun4_realistic_v4-v1/2810000/00a195aa-30f2-405c-aac8-09cb336eadaf.root',
     ]
 }
 
@@ -219,14 +222,15 @@ process.load("L1Trigger.DTTriggerPhase2.dtTriggerPhase2Showers_cfi")
 
 process.CalibratedDigis.dtDigiTag = "simMuonDTDigis"
 
-process.dtTriggerPhase2ShowerV1 = process.dtTriggerPhase2Shower.clone()
-process.dtTriggerPhase2ShowerV1.showerTaggingAlgo = options.showerAlgorithm
-process.dtTriggerPhase2ShowerV1.threshold_for_shower = options.showThreshold
-process.dtTriggerPhase2ShowerV1.debug = options.debug # Turn off debug mode
+process.dtTriggerPhase2ShowerV1p2 = process.dtTriggerPhase2Shower.clone()
+process.dtTriggerPhase2ShowerV1p2.showerTaggingAlgo = options.showerAlgorithm
+process.dtTriggerPhase2ShowerV1p2.threshold_for_shower = options.showThreshold
+process.dtTriggerPhase2ShowerV1p2.debug = options.debug # debug mode
+process.dtTriggerPhase2ShowerV1p2.dump_digis = options.dumpDigis # digi dumping
 
 process.dtTriggerPhase2AmPrimitiveDigis = process.dtTriggerPhase2PrimitiveDigis.clone()
 process.dtTriggerPhase2AmPrimitiveDigis.useRPC = options.useRPC
-process.dtTriggerPhase2AmPrimitiveDigis.debug = options.debug # Turn off debug mode
+process.dtTriggerPhase2AmPrimitiveDigis.debug = options.debug # debug mode
 process.dtTriggerPhase2AmPrimitiveDigis.df_extended = options.useExtDF # Use extended data format
 process.dtTriggerPhase2AmPrimitiveDigis.unhardcoded_sectorgt12 = options.unhardcodeAMSector # Do not hardcode AM sector to 4-10
 #process.dtTriggerPhase2AmPrimitiveDigis.showersTag = "dtTriggerPhase2ShowerV1"
@@ -249,7 +253,7 @@ process.p = cms.Path(process.rpcRecHits
                      + process.dt4DSegments
                      + process.CalibratedDigis
                      + process.simBmtfDigis
-                     + process.dtTriggerPhase2ShowerV1
+                     + process.dtTriggerPhase2ShowerV1p2
                      + process.dtTriggerPhase2AmPrimitiveDigis
                      + process.dtNtupleProducer)
 
