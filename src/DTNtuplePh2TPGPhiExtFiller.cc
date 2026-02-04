@@ -74,6 +74,10 @@ void DTNtuplePh2TPGPhiExtFiller::initialize()
   m_tree->Branch((m_label + "_pathTDC").c_str(), &m_lt_pathTDC);
   m_tree->Branch((m_label + "_pathLat").c_str(), &m_lt_pathLat);
 
+  m_tree->Branch((m_label + "_xLocal").c_str(), &m_lt_xLocal);
+  m_tree->Branch((m_label + "_tanPsi").c_str(), &m_lt_tanPsi);
+  m_tree->Branch((m_label + "_phiCMSSW").c_str(), &m_lt_phiCMSSW);
+  m_tree->Branch((m_label + "_phiBCMSSW").c_str(), &m_lt_phiBCMSSW);
 }
 
 void DTNtuplePh2TPGPhiExtFiller::clear()
@@ -105,6 +109,11 @@ void DTNtuplePh2TPGPhiExtFiller::clear()
   m_lt_pathWireId.clear();
   m_lt_pathTDC.clear();
   m_lt_pathLat.clear();
+
+  m_lt_xLocal.clear();
+  m_lt_tanPsi.clear();
+  m_lt_phiCMSSW.clear();
+  m_lt_phiBCMSSW.clear();
 
 }
 
@@ -143,6 +152,11 @@ void DTNtuplePh2TPGPhiExtFiller::fill(const edm::Event & ev)
 
 	  m_lt_bx.push_back(trig.bxNum());
 	  m_lt_t0.push_back(trig.t0());
+
+    m_lt_xLocal.push_back(trig.xLocal());
+    m_lt_tanPsi.push_back(trig.tanPsi());
+    m_lt_phiCMSSW.push_back(trig.phiCMSSW());
+    m_lt_phiBCMSSW.push_back(trig.phiBendCMSSW());
 	  
 	  m_lt_index.push_back(trig.index());
 

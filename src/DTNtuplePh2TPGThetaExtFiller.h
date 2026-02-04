@@ -86,6 +86,10 @@ class DTNtuplePh2TPGThetaExtFiller : public DTNtupleBaseFiller
  std::vector<std::vector<int>> m_lt_pathWireId; // wireId of the 8 hits composing the segment
  std::vector<std::vector<int>> m_lt_pathTDC;    // TDC of the 8 hits composing the segment
  std::vector<std::vector<int>> m_lt_pathLat;   // Laterality of the 8 hits composing the segment
+
+ std::vector<int> m_lt_yLocal; // y position in local directly from the Trigger Primitive
+ std::vector<int> m_lt_zCMSSW; // z position in local directly from the Trigger Primitive
+ std::vector<int> m_lt_kCMSSW; // k bending in local directly from the Trigger Primitive
 };
   
 #endif
