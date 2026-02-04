@@ -95,6 +95,11 @@ class DTNtuplePh2TPGPhiExtFiller : public DTNtupleBaseFiller
  std::vector<std::vector<int>> m_lt_pathWireId; // wireId of the 8 hits composing the segment
  std::vector<std::vector<int>> m_lt_pathTDC;    // TDC of the 8 hits composing the segment
  std::vector<std::vector<int>> m_lt_pathLat;   // Laterality of the 8 hits composing the segment
+
+ std::vector<int> m_lt_xLocal; // x position in local directly from the Trigger Primitive
+ std::vector<int> m_lt_tanPsi; // tan(Psi) angle directly from the Trigger Primitive
+ std::vector<int> m_lt_phiCMSSW; // phi angle directly from the Trigger Primitive (m_phiAngleCMSSW)
+ std::vector<int> m_lt_phiBCMSSW; // phi bending angle directly from the Trigger Primitive (m_phiBendingCMSSW)
 };
   
 #endif
