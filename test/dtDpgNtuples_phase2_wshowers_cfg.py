@@ -222,11 +222,11 @@ process.load("L1Trigger.DTTriggerPhase2.dtTriggerPhase2Showers_cfi")
 
 process.CalibratedDigis.dtDigiTag = "simMuonDTDigis"
 
-process.dtTriggerPhase2ShowerV1p2 = process.dtTriggerPhase2Shower.clone()
-process.dtTriggerPhase2ShowerV1p2.showerTaggingAlgo = options.showerAlgorithm
-process.dtTriggerPhase2ShowerV1p2.threshold_for_shower = options.showThreshold
-process.dtTriggerPhase2ShowerV1p2.debug = options.debug # debug mode
-process.dtTriggerPhase2ShowerV1p2.dump_digis = options.dumpDigis # digi dumping
+process.dtTriggerPhase2ShowerV1 = process.dtTriggerPhase2Shower.clone()
+process.dtTriggerPhase2ShowerV1.showerTaggingAlgo = options.showerAlgorithm
+process.dtTriggerPhase2ShowerV1.threshold_for_shower = options.showThreshold
+process.dtTriggerPhase2ShowerV1.debug = options.debug # debug mode
+process.dtTriggerPhase2ShowerV1.dump_digis = options.dumpDigis # digi dumping
 
 process.dtTriggerPhase2AmPrimitiveDigis = process.dtTriggerPhase2PrimitiveDigis.clone()
 process.dtTriggerPhase2AmPrimitiveDigis.useRPC = options.useRPC
@@ -253,7 +253,7 @@ process.p = cms.Path(process.rpcRecHits
                      + process.dt4DSegments
                      + process.CalibratedDigis
                      + process.simBmtfDigis
-                     + process.dtTriggerPhase2ShowerV1p2
+                     + process.dtTriggerPhase2ShowerV1
                      + process.dtTriggerPhase2AmPrimitiveDigis
                      + process.dtNtupleProducer)
 
