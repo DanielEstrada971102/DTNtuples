@@ -206,8 +206,8 @@ process.TFileService = cms.Service('TFileService',
 process.load('SimGeneral.MixingModule.mixNoPU_cfi')
 process.load('Configuration.StandardSequences.Services_cff')
 process.load("Configuration.StandardSequences.MagneticField_cff")
-process.load('Configuration.Geometry.GeometryExtendedRun4D103Reco_cff')
-process.load('Configuration.Geometry.GeometryExtendedRun4D103_cff')
+process.load('Configuration.Geometry.GeometryExtended2026Reco_cff')
+process.load('Configuration.Geometry.GeometryExtended2026_cff')
 
 # process.DTGeometryESModule.applyAlignment = False
 # process.DTGeometryESModule.fromDDD = False

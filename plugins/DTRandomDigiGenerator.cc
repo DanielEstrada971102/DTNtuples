@@ -61,7 +61,7 @@
 // class declaration
 //
 
-class DTRandomDigiGenerator : public edm::stream::EDProducer<> {
+class DTRandomDigiGenerator : public edm::stream::EDProducer<edm::stream::WatchRuns> {
 public:
   explicit DTRandomDigiGenerator(const edm::ParameterSet &);
   ~DTRandomDigiGenerator() override;
