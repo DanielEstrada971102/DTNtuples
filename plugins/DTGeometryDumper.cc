@@ -64,7 +64,7 @@
 // class declaration
 //
 
-class DTGeometryDumper : public edm::stream::EDProducer<> {
+class DTGeometryDumper : public edm::stream::EDProducer<edm::stream::WatchRuns> {
 public:
   explicit DTGeometryDumper(const edm::ParameterSet &);
   ~DTGeometryDumper() override;

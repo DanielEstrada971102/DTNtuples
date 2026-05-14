@@ -45,7 +45,7 @@
 // class declaration
 //
 
-class DTUpgradeFedL1AProducer : public edm::stream::EDProducer<> {
+class DTUpgradeFedL1AProducer : public edm::stream::EDProducer<edm::stream::WatchRuns> {
 public:
   explicit DTUpgradeFedL1AProducer(const edm::ParameterSet &);
   ~DTUpgradeFedL1AProducer() override;
