@@ -67,6 +67,9 @@ void DTNtuplePh2TPGThetaExtFiller::initialize()
   m_tree->Branch((m_label + "_pathTDC").c_str(), &m_lt_pathTDC);
   m_tree->Branch((m_label + "_pathLat").c_str(), &m_lt_pathLat);
 
+  m_tree->Branch((m_label + "_yLocal").c_str(), &m_lt_yLocal);
+  m_tree->Branch((m_label + "_zCMSSW").c_str(), &m_lt_zCMSSW);
+  m_tree->Branch((m_label + "_kCMSSW").c_str(), &m_lt_kCMSSW);
 }
 
 void DTNtuplePh2TPGThetaExtFiller::clear()
@@ -94,6 +97,9 @@ void DTNtuplePh2TPGThetaExtFiller::clear()
   m_lt_pathWireId.clear();
   m_lt_pathTDC.clear();
   m_lt_pathLat.clear();
+  m_lt_yLocal.clear();
+  m_lt_zCMSSW.clear();
+  m_lt_kCMSSW.clear();
 
 }
 
@@ -124,6 +130,10 @@ void DTNtuplePh2TPGThetaExtFiller::fill(const edm::Event & ev)
 
           m_lt_bx.push_back(trig.bxNum());
           m_lt_t0.push_back(trig.t0());
+
+          m_lt_yLocal.push_back(trig.yLocal());
+          m_lt_zCMSSW.push_back(trig.zCMSSW());
+          m_lt_kCMSSW.push_back(trig.kCMSSW());
 
           m_lt_index.push_back(trig.index());
 
